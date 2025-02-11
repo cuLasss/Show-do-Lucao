@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Show do Lucão</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="https://png.pngtree.com/png-vector/20240718/ourmid/pngtree-pixel-art-money-bag-png-image_13127601.png" type="image/png">
 </head>
 <body>
     <!-- Cabeçalho -->
@@ -15,23 +16,13 @@
     <!-- Pontuação -->
     <div id="score" style="display: none;">Pontuação: 0</div>
 
-    <!-- Power-Ups -->
-    <div id="power-ups" style="display: none;">
-        <h2>Reforços Disponíveis</h2>
-        <div class="grid">
-            <button onclick="usePowerUp('cards')" class="power-up" id="power-cards">Cartas</button>
-            <button onclick="usePowerUp('askAudience')" class="power-up" id="power-askAudience">Pedir Ajuda ao Público</button>
-            <button onclick="usePowerUp('skipQuestion')" class="power-up" id="power-skipQuestion">Pular Pergunta</button>
-        </div>
+    <!-- Seleção de Dificuldade -->
+    <div id="difficulty-selection">
+        <h2>Selecione a Dificuldade:</h2>
+        <button class="button" onclick="startGame('easy')">Fácil</button>
+        <button class="button" onclick="startGame('medium')">Médio</button>
+        <button class="button" onclick="startGame('hard')">Difícil</button>
     </div>
-
-   <!-- Seleção de Dificuldade -->
-   <div id="difficulty-selection">
-       <h2>Selecione a Dificuldade:</h2>
-       <button class="button" onclick="startGame('easy')">Fácil</button>
-       <button class="button" onclick="startGame('medium')">Médio</button>
-       <button class="button" onclick="startGame('hard')">Difícil</button>
-   </div>
 
     <!-- Carregamento -->
     <div id="loading" style="display: none;">
@@ -41,10 +32,23 @@
 
     <!-- Quiz Container -->
     <div id="quiz-container" style="display: none;">
-        <div id="question-card">
-            <div id="question" style="font-size: 24px; margin-bottom: 20px;"></div>
-            <div id="options"></div>
-            <button id="next-button" style="display: none;" onclick="nextQuestion()">Próxima</button>
+        <div class="grid-container">
+            <!-- Power-Ups -->
+            <div id="power-ups" style="display: none;">
+                <h2>Reforços Disponíveis</h2>
+                <div class="grid">
+                    <button onclick="usePowerUp('cards')" class="power-up" id="power-cards">Cartas</button>
+                    <button onclick="usePowerUp('askAudience')" class="power-up" id="power-askAudience">Pedir Ajuda ao Público</button>
+                    <button onclick="usePowerUp('skipQuestion')" class="power-up" id="power-skipQuestion">Pular Pergunta</button>
+                </div>
+            </div>
+
+            <!-- Question Card -->
+            <div id="question-card">
+                <div id="question" style="font-size: 24px; margin-bottom: 20px;"></div>
+                <div id="options"></div>
+                <button id="next-button" style="display: none;" onclick="nextQuestion()">Próxima</button>
+            </div>
         </div>
     </div>
 
@@ -66,12 +70,12 @@
 
     <!-- Ajuda do Público (Modal) -->
     <div id="audience-help" style="display: none;">
-    <div class="modal-content">
-        <h2>Ajuda do Público</h2>
-        <div id="audience-votes"></div>
-        <button id="close-audience-help">Fechar</button>
+        <div class="modal-content">
+            <h2>Ajuda do Público</h2>
+            <div id="audience-votes"></div>
+            <button id="close-audience-help">Fechar</button>
+        </div>
     </div>
-</div>
 
     <!-- Modal de Cartas -->
     <div id="card-modal" style="display: none;">

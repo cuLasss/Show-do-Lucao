@@ -143,17 +143,23 @@ h1 {
     transition: opacity 0.5s ease;
 }
 
+/* Quiz Container com Grid */
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* Ajusta a proporção entre os reforços e o quiz */
+    gap: 20px; /* Espaço entre os elementos */
+    align-items: start; /* Alinha os itens do grid ao topo */
+}
+
 /* Power-Ups */
 #power-ups {
-    position: fixed;
-    top: 50%; /* Centraliza verticalmente */
-    left: 20px; /* Alinha à esquerda */
-    transform: translateY(-50%); /* Ajusta para centralização */
-    width: 220px; /* Largura maior */
     background-color: #f8f9fa; /* Cinza claro */
     border: 1px solid #ddd;
     border-radius: 5px;
     padding: 10px;
+    display: flex;
+    flex-direction: column; /* Coloca os botões em coluna */
+    align-items: center; /* Centraliza os botões */
 }
 
 /* Power-Ups */
@@ -405,6 +411,18 @@ a:hover {
 }
 /* Estilos Responsivos */
 @media (max-width: 600px) {
+    .grid-container {
+        grid-template-columns: 1fr; /* Uma coluna em telas menores */
+        margin: 0; /* Remove margens */
+    }
+
+    #power-ups {
+        margin: 20px auto; /* Centraliza no mobile */
+        width: 90%; /* Largura responsiva */
+        max-width: 300px; /* Largura máxima */
+    }
+
+    /* Outros estilos responsivos já existentes */
     body {
         padding: 10px; /* Reduz o padding */
     }
@@ -426,14 +444,9 @@ a:hover {
 
     #quiz-container {
         padding: 10px; /* Reduz o padding do container do quiz */
+        margin-bottom: 20px; /* Adiciona margem inferior para espaço */
     }
 
-    #card-container {
-        flex-direction: column; /* Coloca as cartas em coluna */
-        gap: 5px; /* Reduz o espaço entre as cartas */
-    }
-
-    /* Ajusta a margem e o tamanho da fonte para perguntas e opções */
     #question {
         font-size: 1.5rem; /* Tamanho menor em telas pequenas */
         margin-bottom: 15px; /* Ajusta a margem inferior */
@@ -442,8 +455,8 @@ a:hover {
     #options button {
         font-size: 18px; /* Ajusta o tamanho da fonte dos botões de resposta */
     }
-}
 
+}
 @media (min-width: 601px) and (max-width: 900px) {
     h1 {
         font-size: 2.5rem; /* Aumenta o tamanho do título */
@@ -462,4 +475,47 @@ a:hover {
     #quiz-container {
         padding: 20px; /* Mantém padding adequado */
     }
+}
+@media (min-width: 901px) {
+    .grid-container {
+        display: grid; /* Mantém o grid */
+        grid-template-columns: auto 1fr; /* Primeira coluna automática, segunda coluna para o quiz */
+        gap: 40px; /* Espaço entre os elementos */
+        max-width: 1200px; /* Largura máxima do grid */
+        margin: 0 auto; /* Centraliza o grid na tela */
+    }
+
+    #power-ups {
+        grid-column: 1; /* Coloca os reforços na primeira coluna */
+        justify-self: start; /* Alinha à esquerda */
+        padding: 20px; /* Ajusta o padding, se necessário */
+        width: fit-content; /* Ajusta a largura para o conteúdo */
+    }
+
+    #question-card {
+        grid-column: 2; /* Coloca o quiz na segunda coluna */
+        justify-self: center; /* Centraliza o quiz */
+        padding: 20px; /* Ajusta o padding do cartão de perguntas */
+    }
+
+    /* Adicione este estilo para garantir que o container ocupe a largura total */
+    #quiz-container {
+        display: flex; /* Flex container para alinhar os itens */
+        justify-content: space-between; /* Espaçar os elementos */
+        width: 100%; /* Ocupa 100% da largura */
+        max-width: 1200px;
+    }
+    #audience-help {
+    display: none; /* Inicialmente oculto */
+    position: fixed; /* Fixo na tela */
+    top: 50%; /* 50% da altura da tela */
+    left: 50%; /* 50% da largura da tela */
+    transform: translate(-50%, -50%); /* Centraliza o modal */
+    background-color: white; /* Cor de fundo do modal */
+    padding: 20px; /* Espaçamento interno */
+    z-index: 1000; /* Garante que o modal fique acima de outros elementos */
+    width: 80%; /* Largura do modal */
+    max-width: 500px; /* Largura máxima do modal */
+    border-radius: 8px; /* Bordas arredondadas */
+}
 }

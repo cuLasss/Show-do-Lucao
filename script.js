@@ -3,6 +3,12 @@ let currentQuestionIndex = 0;
 let score = 0;
 let questions = [];
 let usedFiftyFifty = false;
+// Função para tradução
+async function translateText(text, sourceLang, targetLang) {
+    const response = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${sourceLang}|${targetLang}`);
+    const data = await response.json();
+    return data.responseData.translatedText;
+}
 
 // Definindo os valores das perguntas
 const prizeValues = [
@@ -30,22 +36,26 @@ let usedPowerUps = {
     skipQuestion: false
 };
 
-// Funções para Carregar Perguntas
 async function getQuestions(difficulty) {
     const response = await fetch(`https://opentdb.com/api.php?amount=10&category=9&difficulty=${difficulty}`);
     const data = await response.json();
     return data.results;
 }
 
+// Funções para Carregar Perguntas
 async function loadQuestions(difficulty) {
     document.getElementById('loading').style.display = 'block';
     const rawQuestions = await getQuestions(difficulty);
 
-    questions = rawQuestions.map(question => ({
-        ...question,
-        question: question.question,
-        correct_answer: question.correct_answer,
-        incorrect_answers: question.incorrect_answers
+    // Traduz as perguntas após carregá-las
+    questions = await Promise.all(rawQuestions.map(async question => {
+        const translatedQuestion = await translateText(question.question, 'en', 'pt'); // Traduz para português
+        return {
+            ...question,
+            question: translatedQuestion, // Substitui a pergunta original pela traduzida
+            correct_answer: question.correct_answer,
+            incorrect_answers: question.incorrect_answers
+        };
     }));
 
     document.getElementById('loading').style.display = 'none';
@@ -63,7 +73,8 @@ function startGame(difficulty) {
 }
 
 // Funções para Mostrar Perguntas
-function showQuestion() {
+// Funções para Mostrar Perguntas
+async function showQuestion() {
     // Verifica se o índice está dentro do intervalo
     if (currentQuestionIndex < 0 || currentQuestionIndex >= questions.length) {
         alert(`Fim do jogo! Sua pontuação final é: R$ ${score}`);
@@ -71,7 +82,7 @@ function showQuestion() {
     }
 
     const question = questions[currentQuestionIndex];
-    document.getElementById('question').innerHTML = question.question;
+    document.getElementById('question').innerHTML = question.question; // Exibe a pergunta traduzida
 
     const options = [...question.incorrect_answers, question.correct_answer];
     const shuffledOptions = shuffleArray(options);
