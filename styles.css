@@ -1,0 +1,465 @@
+/* Estilos Gerais */
+body {
+    background-image: url('https://i.imgur.com/rlwBK6p.jpeg');
+    background-size: cover; /* Faz a imagem cobrir toda a área */
+    font-family: 'Arial Black', sans-serif;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+}
+
+h1 {
+    color: #333333; /* Cinza escuro */
+    margin: 20px 0;
+}
+
+/* Pontuação */
+#score {
+    font-size: 24px;
+    margin: 10px 0;
+    color: #000000; /* Vermelho mais suave */
+}
+
+/* Seleção de Dificuldade */
+#difficulty-selection {
+    margin: 20px 0;
+}
+
+/* Botões de Dificuldade */
+.button {
+    background-color: #000000; /* Preto */
+    color: white;
+    padding: 15px 50px;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+    width: 80%;
+    max-width: 200px;
+    transition: background-color 0.3s, color 0.3s; /* Transições para animação */
+}
+
+.button.disabled {
+    opacity: 1.0; /* Diminui a opacidade para indicar que o botão não pode ser clicado */
+    pointer-events: none; /* Impede interações com o botão */
+}
+
+.button:hover {
+    background-color: white; /* Fica branco ao passar o mouse */
+    color: #000000; /* Mantém o texto azul */
+}
+
+
+.button:active {
+    transform: scale(0.95);
+}
+
+/* Botões do Jogo */
+.game-button {
+    background-color: #000000; /* Preto */
+    color: white;
+    padding: 15px 50px;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer; /* Permite o clique */
+    margin: 10px;
+    width: 80%;
+    max-width: 200px;
+    transition: background-color 0.3s, color 0.3s; /* Transições para animação */
+}
+
+.game-button:hover {
+    background-color: white; /* Fica branco ao passar o mouse */
+    color: #000000; /* Mantém o texto preto */
+}
+
+/* Botão Parar */
+#stop-prize {
+    cursor: pointer; /* Garante que o cursor de ponteiro apareça */
+}
+
+#stop-prize:hover {
+    background-color: white; /* Azul mais escuro ao passar o mouse */
+    transform: scale(1.05); /* Leve aumento no tamanho ao passar o mouse */
+    transition: background-color 0.3s, transform 0.2s; /* Transições para animação */
+}
+
+/* Botões do Jogo */
+#lose-prize, #win-prize {
+    cursor: default; /* Muda o cursor para ponteiro */
+    background-color: #000000; /* Preto */
+    color: white;
+    padding: 15px 50px;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    margin: 10px;
+    width: 80%;
+    max-width: 200px;
+    transition: none; /* Remove transições */
+}
+#lose-prize:hover, #win-prize:hover {
+    background-color: #000000; /* Mantém a mesma cor ao passar o mouse */
+    color: white; /* Mantém o texto branco */
+}
+
+/* Carregamento */
+#loading {
+    display: none;
+    font-size: 20px;
+    margin: 20px auto;
+}
+
+.spinner {
+    border: 8px solid #f3f3f3; /* Cinza claro */
+    border-top: 8px solid #000000; /* Preto */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 10px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Quiz Container */
+#quiz-container {
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff; /* Branco */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+/* Power-Ups */
+#power-ups {
+    position: fixed;
+    top: 50%; /* Centraliza verticalmente */
+    left: 20px; /* Alinha à esquerda */
+    transform: translateY(-50%); /* Ajusta para centralização */
+    width: 220px; /* Largura maior */
+    background-color: #f8f9fa; /* Cinza claro */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+/* Power-Ups */
+.grid {
+    display: flex;
+    flex-direction: column; /* Coloca os botões em uma coluna */
+    align-items: center; /* Centraliza os botões horizontalmente */
+    gap: 10px; /* Espaço entre os botões */
+}
+
+.power-up {
+    width: 200px; /* Largura fixa para os botões */
+    padding: 15px; /* Aumenta o padding */
+    font-size: 18px; /* Tamanho da fonte */
+    cursor: pointer;
+    background-color: #000000; /* Preto */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s; /* Transições para animação */
+}
+
+.power-up:hover {
+    background-color: white; /* Fica branco ao passar o mouse */
+    color: #000000; /* Mantém o texto preto */
+}
+
+.power-up.flipped {
+    transform: rotateY(180deg); /* Efeito de flip */
+    transition: transform 0.6s; /* Transição suave */
+}
+
+.power-up.disabled {
+    pointer-events: none; /* Impede o clique no botão */
+    opacity: 0.5;
+    cursor: not-allowed; /* Diminui a opacidade para indicar que o botão não pode ser clicado */
+}
+
+/* Botão Próxima */
+#next-button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: #000000; /* Preto */
+    color: white;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s, color 0.3s; /* Transições para animação */
+}
+
+#next-button:hover {
+    background-color: white; /* Fica branco ao passar o mouse */
+    color: #000000; /* Mantém o texto preto */
+}
+/* Pergunta e Opções */
+#question {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #000000; /* Preto */
+}
+
+/* Botões de Resposta */
+#options button {
+    display: block;
+    margin: 10px auto;
+    padding: 15px 30px;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #060606; /* Preto */
+    color: #fff; /* Texto branco */
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#options button:hover {
+    background-color: #5072A0; /* Cor ao passar o mouse */3
+    color: black;
+}
+/* Estilos para resposta correta e incorreta */
+.correct {
+    background-color: #4CAF50 !important; /* Verde para resposta correta */
+    color: white !important; /* Texto branco */
+}
+
+.incorrect {
+    background-color: #F44336 !important; /* Vermelho para resposta incorreta */
+    color: white !important; /* Texto branco */
+}
+/* Estilos do Modal de Ajuda do Público */
+#audience-help {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    z-index: 1000;
+    display: flex;
+    align-content: center;
+    align-items: center; /* Centraliza verticalmente o conteúdo do modal */
+    justify-content: center; /* Centraliza horizontalmente o conteúdo do modal */
+}
+#close-audience-help {
+    margin-top: 20px; /* Espaçamento acima do botão */
+    padding: 10px 20px; /* Padding para aumentar o tamanho do botão */
+    font-size: 18px; /* Tamanho da fonte */
+    cursor: pointer; /* Muda o cursor para ponteiro */
+    background-color: #27ae60; /* Cor de fundo verde */
+    color: white; /* Cor do texto */
+    border: none; /* Remove a borda padrão */
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra para efeito de profundidade */
+    transition: background-color 0.3s, transform 0.2s; /* Transição suave para hover */
+}
+
+#close-audience-help:hover {
+    background-color: #218c54; /* Cor de fundo mais escura ao passar o mouse */
+    transform: scale(1.05); /* Leve aumento no tamanho ao passar o mouse */
+}
+
+.modal-content {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    max-width: 500px; /* Limita a largura máxima do modal */
+    width: 90%; /* Largura responsiva */
+}
+
+.audience-chart {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+/* Modal de Cartas */
+#card-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    z-index: 1000;
+    display: flex;
+    align-items: center; /* Centraliza verticalmente o conteúdo do modal */
+    justify-content: center; /* Centraliza horizontalmente o conteúdo do modal */
+    padding: 135px 36px 25px 0px;
+}
+
+#card-container {
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente as cartas */
+    max-width: 500px; /* Limita a largura do container */
+    margin: 0 auto; /* Centraliza o container na tela */
+    gap: 10px; /* Espaçamento entre as cartas */
+    padding: 20px; /* Adiciona algum padding se necessário */
+}
+
+.card {
+    width: 100px; /* Largura fixa para as cartas */
+    height: 150px; /* Altura fixa para as cartas */
+    perspective: 1000px;
+    cursor: pointer;
+    flex: 0 0 auto; /* Impede que as cartas usem o cálculo automático de largura */
+}
+
+.card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.card-front, .card-back {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.card-front {
+    background-image: url('imagens/prabaixo.png'); /* Exemplo de imagem de fundo para a frente da carta */
+    background-size: cover; /* Cobre toda a área da frente da carta */
+    background-position: center; /* Centraliza a imagem */
+}
+
+.card-back {
+    background-size: 101%; /* Ajusta o tamanho da imagem para caber na moldura */
+    background-repeat: no-repeat; /* Evita que a imagem se repita */
+    background-position: center; /* Centraliza a imagem */
+    transform: rotateY(180deg);
+}
+
+.card.flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Botão Voltar */
+#back-button {
+    margin-top: 20px; /* Espaçamento acima do botão */
+    padding: 10px 20px; /* Padding para aumentar o tamanho do botão */
+    font-size: 18px; /* Tamanho da fonte */
+    cursor: pointer; /* Muda o cursor para ponteiro */
+    background-color: #27ae60; /* Cor de fundo verde */
+    color: white; /* Cor do texto */
+    border: none; /* Remove a borda padrão */
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra para efeito de profundidade */
+    transition: background-color 0.3s, transform 0.2s; /* Transição suave para hover */
+}
+
+#back-button:hover {
+    background-color: #218c54; /* Cor de fundo mais escura ao passar o mouse */
+    transform: scale(1.05); /* Leve aumento no tamanho ao passar o mouse */
+}
+
+/* Rodapé */
+footer {
+    background-color: #424242; /* Cinza escuro */
+    color: white;
+    font-size: 14px;
+    padding: 10px 0;
+}
+
+/* Links no Rodapé */
+a {
+    color: #F7F7F7; /* Branco */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+/* Estilos Responsivos */
+@media (max-width: 600px) {
+    body {
+        padding: 10px; /* Reduz o padding */
+    }
+
+    h1 {
+        font-size: 1.8rem; /* Ajusta o tamanho do título */
+    }
+
+    #difficulty-selection {
+        flex-direction: column; /* Coloca os botões em coluna em telas pequenas */
+        align-items: center; /* Centraliza os botões */
+    }
+
+    .button, .game-button, .power-up, #next-button, #back-button {
+        width: 100%; /* Botões ocupam toda a largura */
+        padding: 10px; /* Ajusta o padding dos botões */
+        font-size: 18px; /* Ajusta o tamanho da fonte */
+    }
+
+    #quiz-container {
+        padding: 10px; /* Reduz o padding do container do quiz */
+    }
+
+    #card-container {
+        flex-direction: column; /* Coloca as cartas em coluna */
+        gap: 5px; /* Reduz o espaço entre as cartas */
+    }
+
+    /* Ajusta a margem e o tamanho da fonte para perguntas e opções */
+    #question {
+        font-size: 1.5rem; /* Tamanho menor em telas pequenas */
+        margin-bottom: 15px; /* Ajusta a margem inferior */
+    }
+
+    #options button {
+        font-size: 18px; /* Ajusta o tamanho da fonte dos botões de resposta */
+    }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+    h1 {
+        font-size: 2.5rem; /* Aumenta o tamanho do título */
+    }
+
+    #difficulty-selection {
+        flex-direction: row; /* Mantém os botões em linha em telas maiores */
+        justify-content: center; /* Centraliza os botões */
+    }
+
+    .button, .game-button, .power-up, #next-button, #back-button {
+        width: 80%; /* Botões ocupam 80% da largura */
+        font-size: 20px; /* Tamanho de fonte ajustado */
+    }
+
+    #quiz-container {
+        padding: 20px; /* Mantém padding adequado */
+    }
+}

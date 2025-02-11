@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Arial+Black&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show do Lucão</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <h1>Show do Lucão</h1>
+
+    <!-- Pontuação -->
+    <div id="score" style="display: none;">Pontuação: 0</div>
+
+    <!-- Power-Ups -->
+    <div id="power-ups" style="display: none;">
+        <h2>Reforços Disponíveis</h2>
+        <div class="grid">
+            <button onclick="usePowerUp('cards')" class="power-up" id="power-cards">Cartas</button>
+            <button onclick="usePowerUp('askAudience')" class="power-up" id="power-askAudience">Pedir Ajuda ao Público</button>
+            <button onclick="usePowerUp('skipQuestion')" class="power-up" id="power-skipQuestion">Pular Pergunta</button>
+        </div>
+    </div>
+
+   <!-- Seleção de Dificuldade -->
+   <div id="difficulty-selection">
+       <h2>Selecione a Dificuldade:</h2>
+       <button class="button" onclick="startGame('easy')">Fácil</button>
+       <button class="button" onclick="startGame('medium')">Médio</button>
+       <button class="button" onclick="startGame('hard')">Difícil</button>
+   </div>
+
+    <!-- Carregamento -->
+    <div id="loading" style="display: none;">
+        <div class="spinner"></div>
+        <p>Carregando...</p>
+    </div>
+
+    <!-- Quiz Container -->
+    <div id="quiz-container" style="display: none;">
+        <div id="question-card">
+            <div id="question" style="font-size: 24px; margin-bottom: 20px;"></div>
+            <div id="options"></div>
+            <button id="next-button" style="display: none;" onclick="nextQuestion()">Próxima</button>
+        </div>
+    </div>
+
+    <!-- Prêmios -->
+    <div id="prizes" style="margin: 20px 0; display: none;">
+        <div class="prize-buttons">
+            <button class="game-button" id="lose-prize" onclick="return false;">Errar: <span id="value-lose">R$ 100</span></button>
+            <button class="game-button" id="stop-prize" onclick="stopGame()">Parar: <span id="value-stop">R$ 500</span></button>
+            <button class="game-button" id="win-prize" onclick="return false;">Acertar: <span id="value-win">R$ 1.000</span></button>
+        </div>
+    </div>
+
+    <!-- Resposta Incorreta -->
+    <div id="incorrect-answer" style="display: none;">
+        <h2>Resposta Incorreta!</h2>
+        <p>Você levou para casa R$ <span id="final-score">0</span>.</p>
+        <button onclick="restartGame()">Recomeçar</button>
+    </div>
+
+    <!-- Ajuda do Público (Modal) -->
+    <div id="audience-help" style="display: none;">
+    <div class="modal-content">
+        <h2>Ajuda do Público</h2>
+        <div id="audience-votes"></div>
+        <button id="close-audience-help">Fechar</button>
+    </div>
+</div>
+
+    <!-- Modal de Cartas -->
+    <div id="card-modal" style="display: none;">
+        <h2>Escolha uma carta:</h2>
+        <div id="card-container"></div>
+    </div>
+
+   <!-- Rodapé -->
+   <footer>
+       Feito por Lucas Martin | <a href="https://culas69.github.io/" target="_blank">Meu Site</a>
+   </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
