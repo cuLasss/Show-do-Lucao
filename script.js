@@ -3,12 +3,6 @@ let currentQuestionIndex = 0;
 let score = 0;
 let questions = [];
 let usedFiftyFifty = false;
-// Função para tradução
-async function translateText(text, sourceLang, targetLang) {
-    const response = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${sourceLang}|${targetLang}`);
-    const data = await response.json();
-    return data.responseData.translatedText;
-}
 
 // Definindo os valores das perguntas
 const prizeValues = [
@@ -47,19 +41,11 @@ async function loadQuestions(difficulty) {
     document.getElementById('loading').style.display = 'block';
     const rawQuestions = await getQuestions(difficulty);
 
-    // Traduz as perguntas e respostas após carregá-las
-    questions = await Promise.all(rawQuestions.map(async question => {
-        const translatedQuestion = await translateText(question.question, 'en', 'pt'); // Traduz para português
-        const translatedAnswers = await Promise.all([
-            translateText(question.correct_answer, 'en', 'pt'),
-            ...question.incorrect_answers.map(answer => translateText(answer, 'en', 'pt'))
-        ]);
-
-        return {
-            question: translatedQuestion, // Substitui a pergunta original pela traduzida
-            correct_answer: translatedAnswers[0], // Resposta correta traduzida
-            incorrect_answers: translatedAnswers.slice(1), // Respostas incorretas traduzidas
-        };
+    // Carrega as perguntas e respostas
+    questions = rawQuestions.map(question => ({
+        question: question.question, // Mantém a pergunta original
+        correct_answer: question.correct_answer, // Resposta correta
+        incorrect_answers: question.incorrect_answers // Respostas incorretas
     }));
 
     document.getElementById('loading').style.display = 'none';
@@ -77,7 +63,6 @@ function startGame(difficulty) {
 }
 
 // Funções para Mostrar Perguntas
-// Funções para Mostrar Perguntas
 async function showQuestion() {
     // Verifica se o índice está dentro do intervalo
     if (currentQuestionIndex < 0 || currentQuestionIndex >= questions.length) {
@@ -86,7 +71,7 @@ async function showQuestion() {
     }
 
     const question = questions[currentQuestionIndex];
-    document.getElementById('question').innerHTML = question.question; // Exibe a pergunta traduzida
+    document.getElementById('question').innerHTML = question.question; // Exibe a pergunta
 
     const options = [...question.incorrect_answers, question.correct_answer];
     const shuffledOptions = shuffleArray(options);
@@ -221,39 +206,6 @@ function nextQuestion() {
     });
 }
 
-function stopGame() {
-    // Verifica se o índice está dentro do intervalo
-    if (currentQuestionIndex < 0 || currentQuestionIndex >= prizeValues.length) {
-        console.error("Índice fora do intervalo:", currentQuestionIndex);
-        score = 0; // Define um valor padrão para score
-        document.getElementById('score').textContent = `Pontuação: R$ ${score.toLocaleString()}`;
-        alert(`Fim do jogo! Sua pontuação final é: R$ ${score.toLocaleString()}.`);
-        return;
-    }
-
-    const currentPrize = prizeValues[currentQuestionIndex];
-    score = currentPrize.stop; // Define a pontuação fixa ao parar
-
-    // Atualizar o elemento de pontuação com a pontuação final
-    document.getElementById('score').textContent = `Pontuação: R$ ${score.toLocaleString()}`;
-
-    // Exibir mensagem de finalização do jogo
-    alert(`Você parou o jogo e sua pontuação total é: R$ ${score.toLocaleString()}.`);
-
-    // Desabilitar todos os botões de opções e de reforço
-    const optionsButtons = document.querySelectorAll('#options button');
-    optionsButtons.forEach(btn => {
-        btn.disabled = true; // Desabilita todos os botões de opções
-    });
-    disablePowerUps(); // Desabilita os botões de reforço
-
-    // Desabilitar o botão "Parar"
-    document.getElementById('stop-prize').disabled = true;
-
-    // Mostrar botão "Sair"
-    showExitButton();
-}
-
 // Função para mostrar o botão "Sair"
 function showExitButton() {
     const exitButton = document.createElement('button');
@@ -272,6 +224,7 @@ function showExitButton() {
     // Adiciona o botão ao container do quiz
     document.getElementById('quiz-container').appendChild(exitButton);
 }
+
 // Funções para Power-Ups
 function usePowerUp(type) {
     if (usedPowerUps[type]) {
