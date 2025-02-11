@@ -47,14 +47,18 @@ async function loadQuestions(difficulty) {
     document.getElementById('loading').style.display = 'block';
     const rawQuestions = await getQuestions(difficulty);
 
-    // Traduz as perguntas após carregá-las
+    // Traduz as perguntas e respostas após carregá-las
     questions = await Promise.all(rawQuestions.map(async question => {
         const translatedQuestion = await translateText(question.question, 'en', 'pt'); // Traduz para português
+        const translatedAnswers = await Promise.all([
+            translateText(question.correct_answer, 'en', 'pt'),
+            ...question.incorrect_answers.map(answer => translateText(answer, 'en', 'pt'))
+        ]);
+
         return {
-            ...question,
             question: translatedQuestion, // Substitui a pergunta original pela traduzida
-            correct_answer: question.correct_answer,
-            incorrect_answers: question.incorrect_answers
+            correct_answer: translatedAnswers[0], // Resposta correta traduzida
+            incorrect_answers: translatedAnswers.slice(1), // Respostas incorretas traduzidas
         };
     }));
 
