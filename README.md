@@ -35,6 +35,6 @@ Este projeto é de código aberto e livre para uso. Modificações e melhorias s
 
 ## 📩 Contato  
 
-Para dúvidas ou sugestões, entre em contato comigo através do meu site: **[Lucas Martin](https://culasss.github.io/PessoalPagina/))**.  
+Para dúvidas ou sugestões, entre em contato comigo através do meu site: **[Lucas Martin](https://culasss.github.io/PessoalPagina/)**.  
 
 🎲 **Agradecemos por visitar o Show do Lucão! Boa sorte e divirta-se jogando!** ❤️  
