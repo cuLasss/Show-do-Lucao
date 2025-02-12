@@ -1,48 +1,40 @@
----------------Descrição do Projeto---------------
+# 🎉 Show do Lucão
 
-O Show do Lucão é um jogo interativo inspirado no famoso programa de televisão "Show do Milhão". O objetivo do jogo é responder corretamente a uma série de perguntas de múltipla escolha, acumulando prêmios em dinheiro fictício. Os jogadores podem escolher diferentes níveis de dificuldade e utilizar power-ups estratégicos para ajudá-los durante o quiz.
+Bem-vindo ao **Show do Lucão**, um jogo interativo inspirado no clássico programa de TV "Show do Milhão"! 🏆  
 
----------------Funcionalidades--------------------
+O objetivo é responder corretamente a uma série de perguntas de múltipla escolha, acumulando prêmios fictícios. Escolha seu nível de dificuldade, use power-ups estratégicos e tente alcançar **o milhão**! 💰  
 
-• Seleção de Dificuldade: Escolha entre os níveis Fácil, Médio ou Difícil.
+## 🚀 Funcionalidades  
 
-• Perguntas Interativas: Responda a perguntas de múltipla escolha com feedback instantâneo.
+✅ **Seleção de Dificuldade** – Escolha entre Fácil, Médio ou Difícil.  
+✅ **Perguntas Interativas** – Receba feedback instantâneo sobre suas respostas.  
+✅ **Power-Ups** – Peça ajuda ao público, elimine respostas erradas ou pule perguntas.  
+✅ **Prêmios Virtuais** – Acumule dinheiro fictício ao longo do jogo.  
+✅ **Feedback Visual** – Indicação clara para respostas corretas e incorretas.  
 
-• Power-Ups: Utilize opções como pedir ajuda ao público, eliminar respostas erradas ou pular perguntas.
+## 🛠 Tecnologias Utilizadas  
 
-• Prêmios: Acumule prêmios em dinheiro virtual conforme avança nas perguntas.
+- **HTML** – Estrutura do jogo.  
+- **CSS** – Estilização e design responsivo.  
+- **JavaScript** – Lógica do jogo e interatividade.  
 
-• Feedback Visual: Receba feedback visual sobre respostas corretas e incorretas.
+## 🎮 Como Jogar  
 
----------------Tecnologias Utilizadas--------------------
+1. Acesse o jogo pelo link: **[Show do Lucão](https://culas69.github.io/Show-do-Lucao/)**.  
+2. Escolha um nível de dificuldade.  
+3. Responda às perguntas e use power-ups estratégicos.  
+4. Acumule prêmios e tente chegar ao milhão!  
 
-• HTML: Estrutura do jogo.
+## 🤝 Contribuição  
 
-• CSS: Estilização e design responsivo.
+Sinta-se à vontade para sugerir melhorias ou fazer contribuições! O código é aberto para a comunidade.  
 
-• JavaScript: Lógica do jogo e interação com o usuário.
+## 📜 Licença  
 
+Este projeto é de código aberto e livre para uso. Modificações e melhorias são bem-vindas!  
 
----------------Como Jogar-----------------------------
+## 📩 Contato  
 
-• Acesse o site Show do Lucão no link abaixo: https://culas69.github.io/Show-do-Lucao/.
+Para dúvidas ou sugestões, entre em contato comigo através do meu site: **[Lucas Martin]([https://culass.github.io/](https://culasss.github.io/PessoalPagina/))**.  
 
-• Selecione um nível de dificuldade.
-
-•  Responda às perguntas. Utilize os power-ups para maximizar suas chances.
-
-•  Tente acumular a maior pontuação possível ou chegar no milhão!!
-
--------------------Contribuição--------------------------
-
-Sinta-se à vontade para contribuir com melhorias, sugestões ou correções. Aliás é um código aberto e livre para uso.
-
-----------------------Licença---------------------------
-
-Este projeto é de código aberto e livre para uso. Sinta-se à vontade para fazer modificações e melhorias!
-
----------------------Contato-------------------------------
-
-Para dúvidas ou sugestões, entre em contato com Lucas Martin através do meu site https://culas69.github.io/.
-
-Agradecemos por visitar o Show do Lucão! Boa sorte e divirta-se jogando!❤️
+🎲 **Agradecemos por visitar o Show do Lucão! Boa sorte e divirta-se jogando!** ❤️  
