@@ -20,7 +20,7 @@ O objetivo é responder corretamente a uma série de perguntas de múltipla esco
 
 ## 🎮 Como Jogar  
 
-1. Acesse o jogo pelo link: **[Show do Lucão](https://culas69.github.io/Show-do-Lucao/)**.  
+1. Acesse o jogo pelo link: **[Show do Lucão](https://culasss.github.io/Show-do-Lucao/)**.  
 2. Escolha um nível de dificuldade.  
 3. Responda às perguntas e use power-ups estratégicos.  
 4. Acumule prêmios e tente chegar ao milhão!  
