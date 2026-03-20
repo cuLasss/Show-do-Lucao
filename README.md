@@ -1,47 +1,87 @@
-# 🎮 Show do Lucão  
+# 🎮 Show do Lucão — Jogo Web de Quiz Inspirado em Programas de TV
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 ![Status](https://img.shields.io/badge/status-active-success.svg)
 ![Made with](https://img.shields.io/badge/made%20with-HTML%2C%20CSS%20%26%20JS-orange)
 
-Bem-vindo ao **Show do Lucão**, um jogo interativo inspirado no clássico programa de TV **"Show do Milhão"**! 🏆  
+O **Show do Lucão** é um jogo web interativo inspirado na dinâmica de programas de perguntas e respostas como o clássico **Show do Milhão**.
 
-O objetivo é responder corretamente a perguntas de múltipla escolha, acumulando prêmios fictícios até chegar ao grande **1 milhão**! 💰  
-
----
-
-## 🚀 Funcionalidades  
-
-- ✅ **Seleção de Dificuldade** – Fácil, Médio ou Difícil.  
-- ✅ **Categorias de Perguntas** – Escolha entre várias áreas do conhecimento.  
-- ✅ **Power-Ups Inteligentes** –  
-  - 🔍 Pedir Ajuda ao Público  
-  - 🃏 Cartas da Sorte  
-  - ⏩ Pular Pergunta  
-- ✅ **Sistema de Prêmios Virtuais** – Veja quanto acumula a cada resposta.  
-- ✅ **Feedback Visual** – Indicação clara para acertos e erros.  
-- ✅ **Design Responsivo** – Compatível com dispositivos móveis e desktop.  
+A proposta do projeto é oferecer uma experiência divertida e acessível, em que o jogador responde perguntas de múltipla escolha, utiliza recursos especiais e avança na premiação até tentar alcançar o prêmio máximo de **1 milhão**.
 
 ---
 
-## 🛠 Tecnologias Utilizadas  
+## 💡 Visão geral
 
-- **HTML5** – Estrutura do jogo  
-- **CSS3** – Estilo e responsividade  
-- **JavaScript (ES6+)** – Lógica e interações  
-- **Chart.js** – Visualização dos votos do público  
+O jogo foi desenvolvido com foco em **interação**, **feedback visual** e **experiência dinâmica no navegador**, trazendo mecânicas conhecidas de quiz shows para um formato leve e responsivo.
 
----
-
-## 🎮 Como Jogar  
-
-1. Acesse o jogo pelo link: **[Jogar Agora](https://culasss.github.io/Show-do-Lucao/)**  
-2. Escolha a **dificuldade** e as **categorias de perguntas**.  
-3. Responda, use seus **power-ups** e acumule prêmios!  
-4. Tente chegar ao **milhão** sem errar!  
+Além da progressão de prêmio, o projeto conta com seleção de dificuldade, categorias variadas e recursos estratégicos que deixam a partida mais envolvente.
 
 ---
 
-## 👨‍💻 Autor do Projeto
+## 🚀 Principais funcionalidades
 
-Lucas Martin – **[Página Pessoal](https://culasss.github.io)**
+- **Seleção de dificuldade** entre fácil, médio e difícil
+- **Categorias de perguntas** para personalizar a experiência
+- **Sistema de premiação progressiva** com avanço por acertos
+- **Power-ups estratégicos**, incluindo:
+  - ajuda do público
+  - cartas da sorte
+  - pular pergunta
+- **Feedback visual imediato** para respostas corretas e incorretas
+- **Interface responsiva** para desktop e dispositivos móveis
+- **Experiência 100% no navegador**, sem necessidade de instalação
+
+---
+
+## 🛠️ Tecnologias utilizadas
+
+- **HTML5** — estrutura da aplicação
+- **CSS3** — estilização, layout e responsividade
+- **JavaScript (ES6+)** — lógica do jogo e interações
+- **Chart.js** — exibição visual dos votos do público
+
+---
+
+## 🎯 Objetivo do projeto
+
+Este projeto foi criado com foco em prática de desenvolvimento front-end e lógica de interação, explorando:
+
+- manipulação de interface com JavaScript
+- controle de estado do jogo
+- feedback visual para o usuário
+- organização de regras e mecânicas de quiz
+- construção de uma experiência divertida e intuitiva na web
+
+---
+
+## 🎮 Como jogar
+
+1. Acesse o projeto pelo link abaixo  
+2. Escolha a dificuldade e a categoria desejadas  
+3. Responda às perguntas com atenção  
+4. Use os power-ups com estratégia  
+5. Tente chegar ao prêmio máximo sem errar
+
+🔗 **[Jogar agora](https://culasss.github.io/Show-do-Lucao/)**
+
+---
+
+## 📌 Destaques do projeto
+
+- Interface inspirada em game shows clássicos
+- Mecânicas interativas com recursos especiais
+- Aplicação leve e fácil de acessar
+- Boa base para evolução futura com novas categorias, sons, ranking ou banco de perguntas expandido
+
+---
+
+## 📄 Licença
+
+Este projeto está sob a licença **MIT**. Consulte o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+---
+
+## 👨‍💻 Autor
+
+**Lucas Martin**  
+[GitHub](https://github.com/cuLasss) • [Página pessoal](https://culasss.github.io)
