@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Show do Lucão</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="icon" type="png" href="imagens/favicon.png">
+</head>
+
+<body>
+  <header>
+    <h1>Show do Lucão</h1>
+  </header>
+
+  <!-- Overlay de Loading Global (centralizado na tela) -->
+  <div id="global-loading" aria-live="polite" aria-busy="true" role="status">
+    <div class="global-loading-box">
+      <div class="spinner"></div>
+      <div id="global-loading-message">Carregando...</div>
+      <button id="try-random-category" style="display:none">Tentar outra categoria</button>
+    </div>
+  </div>
+
+  <main id="layout">
+    <!-- Coluna esquerda fixa: Power-ups -->
+    <aside id="power-ups" style="display: none;">
+      <h2>Reforços Disponíveis</h2>
+      <div class="grid">
+        <button id="power-cards" class="power-up" data-type="cards" aria-live="polite">Cartas</button>
+        <button id="power-askAudience" class="power-up" data-type="askAudience" aria-live="polite">Pedir Ajuda ao
+          Público</button>
+        <button id="power-skipQuestion" class="power-up" data-type="skipQuestion" aria-live="polite">Pular
+          Pergunta</button>
+      </div>
+      <div id="power-ups-empty" class="power-ups-empty" aria-live="polite" style="display:none;">Todos os reforços foram
+        usados nesta rodada.</div>
+    </aside>
+
+    <!-- Coluna central: Seleção (antes do jogo) e Perguntas -->
+    <section id="center-pane">
+      <section id="difficulty-selection">
+        <h2>Selecione a Dificuldade:</h2>
+        <select id="difficulty-select" aria-label="Dificuldade">
+          <option value="easy">Fácil</option>
+          <option value="medium">Médio</option>
+          <option value="hard">Difícil</option>
+        </select>
+
+        <h2>Selecione as Categorias:</h2>
+        <div id="category-selection" class="category-grid">
+          <label><input type="checkbox" value="0" /> Qualquer Categoria</label>
+          <label><input type="checkbox" value="9" /> Conhecimentos Gerais</label>
+          <label><input type="checkbox" value="10" /> Livros</label>
+          <label><input type="checkbox" value="11" /> Filmes</label>
+          <label><input type="checkbox" value="12" /> Música</label>
+          <label><input type="checkbox" value="13" /> Musicais &amp; Teatro</label>
+          <label><input type="checkbox" value="14" /> Televisão</label>
+          <label><input type="checkbox" value="15" /> Video Games</label>
+          <label><input type="checkbox" value="16" /> Jogos de Tabuleiro</label>
+          <label><input type="checkbox" value="17" /> Ciência &amp; Natureza</label>
+          <label><input type="checkbox" value="18" /> Computadores</label>
+          <label><input type="checkbox" value="19" /> Matemática</label>
+          <label><input type="checkbox" value="20" /> Mitologia</label>
+          <label><input type="checkbox" value="21" /> Esportes</label>
+          <label><input type="checkbox" value="22" /> Geografia</label>
+          <label><input type="checkbox" value="23" /> História</label>
+          <label><input type="checkbox" value="24" /> Política</label>
+          <label><input type="checkbox" value="25" /> Arte</label>
+          <label><input type="checkbox" value="26" /> Celebridades</label>
+          <label><input type="checkbox" value="27" /> Animais</label>
+          <label><input type="checkbox" value="28" /> Veículos</label>
+          <label><input type="checkbox" value="29" /> Quadrinhos</label>
+          <label><input type="checkbox" value="30" /> Gadgets</label>
+          <label><input type="checkbox" value="31" /> Anime &amp; Mangá</label>
+          <label><input type="checkbox" value="32" /> Desenhos Animados</label>
+        </div>
+
+
+        <button id="start-button" class="button">Começar Jogo</button>
+
+        <!-- Loader local opcional -->
+        <div id="loading" style="display:none;">
+          <div class="spinner"></div>
+          Carregando...
+        </div>
+      </section>
+
+      <section id="question-card">
+        <div id="score">Pontuação: R$ 0</div>
+
+        <div id="quiz-container">
+          <div id="question">--</div>
+          <div id="options"></div>
+          <button id="next-button">Próxima</button>
+        </div>
+
+        <!-- Cartão de prêmios -->
+        <div id="prizes-card" class="card-like" style="display: none;">
+          <h3 style="margin-top:0">Prêmios</h3>
+          <div id="prizes" class="prizes-grid">
+            <div>
+              <div>Errar:</div>
+              <button id="lose-prize" class="game-button" disabled>
+                <span id="value-lose">R$ 100</span>
+              </button>
+            </div>
+            <div>
+              <div>Parar:</div>
+              <button id="stop-prize" class="game-button">
+                <span id="value-stop">R$ 500</span>
+              </button>
+            </div>
+            <div>
+              <div>Acertar:</div>
+              <button id="win-prize" class="game-button" disabled>
+                <span id="value-win">R$ 1.000</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tela de finalização genérica -->
+        <div id="final-result" class="card-like" style="display:none;">
+          <h2 id="final-title">Parabéns!</h2>
+          <p id="final-message">Você ganhou R$ <span id="final-score">0</span>.</p>
+          <button id="back-button" onclick="restartGame()">Recomeçar</button>
+        </div>
+
+        <!-- Tela antiga de incorreta (mantida por compatibilidade) -->
+        <div id="incorrect-answer" style="display:none;">
+          <h2>Resposta Incorreta!</h2>
+          <p>Você levou para casa R$ <span id="final-score-incorrect">0</span>.</p>
+          <button id="back-button" onclick="restartGame()">Recomeçar</button>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <!-- Modal: Ajuda do Público -->
+  <div id="audience-help">
+    <div class="modal-content">
+      <h2>Ajuda do Público</h2>
+      <div id="audience-votes"></div>
+      <div class="audience-chart">
+        <canvas id="audience-chart"></canvas>
+      </div>
+      <button id="close-audience-help">Fechar</button>
+    </div>
+  </div>
+
+  <!-- Modal: Cartas -->
+  <div id="card-modal">
+    <div class="modal-content">
+      <h2>Escolha uma carta:</h2>
+      <div id="card-container"></div>
+    </div>
+  </div>
+
+  <!-- Modal: Resultado das Cartas -->
+  <div id="cards-result-modal" aria-modal="true" role="dialog" style="display:none">
+    <div class="modal-content">
+      <h2>Cartas</h2>
+      <p id="cards-result-text">Você eliminou 0 resposta(s).</p>
+      <button id="cards-result-ok">OK</button>
+    </div>
+  </div>
+
+  <!-- Mini Modal de Aviso -->
+  <div id="notice-modal" aria-live="polite" aria-modal="true" role="dialog" style="display:none">
+    <div class="modal-content">
+      <h2>Aviso</h2>
+      <p id="notice-text">Selecione apenas 5 categorias!</p>
+      <button id="notice-ok">OK</button>
+    </div>
+  </div>
+
+  <!-- Modal: Fim de Jogo -->
+  <div id="game-over-modal" aria-modal="true" role="dialog" style="display:none">
+    <div class="modal-content">
+      <h2>Fim de jogo</h2>
+      <p id="game-over-text">Você levou para casa R$ 0.</p>
+      <p id="game-over-detail"></p>
+      <div class="modal-actions">
+        <button id="game-over-retry-same">Recomeçar (mesmas categorias)</button>
+        <button id="game-over-new">Novo jogo</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Confirmar Resposta -->
+  <div id="confirm-modal" aria-modal="true" role="dialog" style="display:none">
+    <div class="modal-content">
+      <h2>Confirmar resposta</h2>
+      <p id="confirm-question">Está certo dessa alternativa?</p>
+      <p id="confirm-choice" style="font-weight:700"></p>
+      <div class="modal-actions">
+        <button id="confirm-cancel">Voltar</button>
+        <button id="confirm-ok">Confirmar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Resposta Correta -->
+  <div id="correct-modal" aria-modal="true" role="dialog" style="display:none">
+    <div class="modal-content">
+      <h2>Resposta correta!</h2>
+      <p id="correct-text">Parabéns!</p>
+      <button id="correct-next">Próxima</button>
+    </div>
+  </div>
+
+  <footer>
+    Feito por Lucas Martin | <a href="https://culasss.github.io/" target="_blank" rel="noopener">Meu Site</a>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" crossorigin="anonymous"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
